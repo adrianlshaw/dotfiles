@@ -1,0 +1,116 @@
+# Primarily for use on Mac OS X
+# export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+
+function nonzero_return() {
+	RETVAL=$?
+	echo "$RETVAL"
+	#[ $RETVAL -ne 0 ] && echo "$RETVAL"
+}
+
+export PS1="\[\033[38;5;1m\]\`nonzero_return\`\[\]\[\033[38;5;15m\] \[\]\[\033[38;5;7m\]\u\[\]\[\033[38;5;15m\]@\[\]\[\033[38;5;214m\]\H\[\]\[\033[38;5;15m\]:\[\]\[\033[38;5;128m\]\w\[\]\[\033[38;5;15m\]> \[\]"
+
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export GDBHISTFILE="$HOME/.gdb_history"
+
+export LS_COLORS="rs=0:di=38;5;5:ln=4;5;37:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=3;28:ow=34;42:st=37;44:ex=38;5;202:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:"
+
+if [ -f ~/.cargo/env ]; then
+	source ~/.cargo/env
+fi
+
+# SSH with Yubikey
+if ! [ -x $(type gpg-connect-agent > /dev/null 2>&1) ]; then
+	export SSH_AUTH_CONNECT=$(gpg-connect-agent "getinfo ssh_socket_name" /bye | head -n 1 | cut -d ' ' -f 2)
+	export SSH_AUTH_SOCK=$SSH_AUTH_CONNECT
+fi
+
+tablize() {
+	echo "-------------------------------"
+	awk '{printf("| %-15s | %-20s |\n", $1, $2)}'
+}
+
+function ssh-ls() {
+
+	FILE=$(realpath ~/.ssh/config)
+
+	THEPORT=""
+	THEHOST=""
+	THEADDR=""
+
+	if [ ! -f "$FILE" ]; then
+		return 0
+	fi
+
+	while read -r line
+	do
+		KEY=$(echo "$line" | cut -d ' ' -f1)
+		VALUE=$(echo "$line" | cut -d ' ' -f2)
+
+		if [ "$KEY" == "Host" ]; then
+			THEHOST=""
+			THEPORT=""
+			THEADDR=""
+			THEHOST="$VALUE"
+		fi
+
+		if [  "$KEY" == "HostName" ]; then
+			THEADDR="$VALUE"
+		fi
+
+		if [  "$KEY" == "Port" ]; then
+			THEPORT="$VALUE"
+		fi
+
+		if [[ -n "$THEADDR" && -n "$THEPORT" ]]; then
+			echo "ffs!" | nc "$THEADDR" "$THEPORT" -w 1 > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "$THEHOST" "\033[1;32mOnline\033[0m" | tablize
+			else
+				echo -e "$THEHOST" "\033[1;31mOffline\033[0m" | tablize
+
+			fi
+			THEHOST=""
+			THEPORT=""
+			THEADDR=""
+		fi
+
+	done < "$FILE"
+
+	echo "-------------------------------"
+
+}
+
+
+# helper functions
+function ssh_key_tablize {
+        awk '{printf("| %-7s | %-7s | %-47s |\n", $1, $2, $3)}'
+}
+
+function ssh-print-keys {
+
+# standard sshd config path
+SSHD_CONFIG=/etc/ssh/sshd_config
+
+        LINE="+---------+---------+-------------------------------------------------+"
+
+
+# header
+echo $LINE
+echo "Cipher" "Algo" "Fingerprint" | ssh_key_tablize
+echo $LINE
+
+
+# fingerprints
+for host_key in $(awk '/^HostKey/ {sub(/^HostKey\s+/,"");print $0".pub"};' $SSHD_CONFIG); do
+        cipher=$(echo $host_key | sed -r 's/^.*ssh_host_([^_]+)_key\.pub$/\1/'| tr '[a-z]' '[A-Z]')
+        if [[ -f "$host_key" ]]; then
+                md5=$(ssh-keygen -l -f $host_key | awk '{print $2}')
+                sha256=$(awk '{print $2}' $host_key | base64 -d | sha256sum -b | awk '{print $1}' | xxd -r -p | base64)
+
+                echo $cipher MD5 $md5 | ssh_key_tablize
+                echo $cipher SHA-256 $sha256 | ssh_key_tablize
+                echo $LINE
+        fi
+done
+}

@@ -1,0 +1,28 @@
+[begin] (Menu)
+	[exec] (X-Terminal) {xterm -ls}
+	[exec] (Terminal) {gnome-terminal}
+	[exec] (Pidgin) {pidgin}
+	[exec] (Spotify) {spotify}
+	[exec] (Steam) {steam}
+	[exec] (Skype) {skype}
+	[exec] (E-mail) {thunderbird}
+	[exec] (Virtual Machines) {virt-manager}
+	[exec] (Files) {nautilus --no-desktop}
+	[exec] (Settings) {gnome-control-center}
+	[exec] (XBMC) {xbmc}		
+		[exec] (Chromium) {chromium-browser}
+		[exec] (Firefox) {firefox}
+		[exec] (Chrome) {google-chrome}
+	[submenu] (startup) {}
+		[exec] (Settings ) {gnome-settings-daemon &}
+		[exec] (conky) {conky &}
+		[exec] (Esetroot) {Esetroot .blackbox/backgrounds/Complex_2.jpg}
+		[exec] (wmbutton) {wmbutton &}
+		[exec] (wmweather) {wmweather -w -s KROC &}
+		[exec] (wmcpuload ) {wmcpuload &}
+		[exec] (wmclock) {wmclock -12 -led white &}
+	[end]
+	[reconfig] (Reconfigure)
+	[restart] (Restart) {}
+	[exit] (Exit)
+[end]
