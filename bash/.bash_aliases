@@ -58,6 +58,7 @@ alias netstat="netstat -l --tcp --udp --unix "
 
 # Navigation
 alias c="clear"
+alias r="reset"
 alias path="pwd"
 alias ll="ls -alF"
 alias la="ls -A"
