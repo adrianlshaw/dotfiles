@@ -1,5 +1,15 @@
 [user]
-		email = adrianlshaw@gmail.com
-		name = Adrian L. Shaw
+	email = adrianlshaw@gmail.com
+	name = Adrian L. Shaw
 [color]
-		ui = auto
+	ui = auto
+	status = auto
+	branch = auto
+
+[alias]
+	co = checkout
+	all = "!f() { ls | xargs -I{} git -C {} $1; }; f"
+	tree = log --graph --pretty=format:'%C(auto) %h %ad [%an] %m%m %d %s' --abbrev-commit --all --decorate --date=short
+	br = branch
+	dif = diff --stat
+	s = status
