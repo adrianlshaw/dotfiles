@@ -11,3 +11,5 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 #	export SSH_AUTH_SOCK=$(gpg-connect-agent "getinfo ssh_socket_name" /bye | head -n 1 | cut -d ' ' -f 2)
 #fi
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+alias linux="docker run -ti --rm ubuntu"
