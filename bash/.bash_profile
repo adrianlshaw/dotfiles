@@ -6,6 +6,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export HOMEBREW_NO_ANALYTICS=1
 
 #if [ -x "$(type gpg-connect-agent)" ]; then
 #	export SSH_AUTH_SOCK=$(gpg-connect-agent "getinfo ssh_socket_name" /bye | head -n 1 | cut -d ' ' -f 2)
