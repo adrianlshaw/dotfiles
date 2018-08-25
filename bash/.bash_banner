@@ -3,7 +3,7 @@ printf "\n  Welcome to $HOSTNAME\n\n"
 
 # Show number of processes
 echo "  Date and time: $(date "+%Y-%m-%d %H:%M:%S")"
-PROCS=$(/bin/ps -aux | wc -l)
+PROCS=$(/bin/ps aux | wc -l | tr -cd '[:digit:]')
 echo "  Processes: $PROCS"
 
 # Show memory usage
