@@ -24,5 +24,10 @@ echo "  Swap usage: $((100-$PERCENTFREE))%"
 # Show system load
 echo "  System load: $(uptime | awk -F'[a-z]:' '{ print $2}' | cut -d ' ' -f2 | cut -d ',' -f1)"
 
+# IP address
+IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1)
+IP=$(ip addr show eno1 | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
+echo "  IP address for $IFACE: $IP"
+
 # Newline
 echo ""
