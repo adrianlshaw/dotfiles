@@ -1,0 +1,28 @@
+# Banner
+printf "\n  Welcome to $HOSTNAME\n\n" 
+
+# Show number of processes
+echo "  Date and time: $(date "+%Y-%m-%d %H:%M:%S")"
+PROCS=$(/bin/ps -aux | wc -l)
+echo "  Processes: $PROCS"
+
+# Show memory usage
+FREE=$(cat /proc/meminfo | grep MemFree | awk '{ printf $2 }')
+TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
+calc(){ awk "BEGIN { print "$*" }"; }
+PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
+echo "  Memory usage: $((100-$PERCENTFREE))%"
+
+FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
+TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
+calc(){ awk "BEGIN { print "$*" }"; }
+PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
+echo "  Swap usage: $((100-$PERCENTFREE))%"
+
+
+
+# Show system load
+echo "  System load: $(uptime | awk -F'[a-z]:' '{ print $2}' | cut -d ' ' -f2 | cut -d ',' -f1)"
+
+# Newline
+echo ""

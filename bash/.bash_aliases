@@ -18,7 +18,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias battery="acpi"
     alias showdesktop="gsettings set org.gnome.desktop.background show-desktop-icons true"
     alias hidedesktop="gsettings set org.gnome.desktop.background show-desktop-icons false"
-    
+    source .bash_banner
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -GFh'
     alias gpg="gpg2"
@@ -35,7 +35,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-    alias localip="ipconfig getifaddr en1"
     alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
     # Desktop 
     alias ping="prettyping"
@@ -49,6 +48,7 @@ alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 
 # Network tools
+alias localip="ifconfig | grep inet | grep broadcast | awk '{ printf( $2 "\n") }'"
 alias gateway="route -n get default"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
