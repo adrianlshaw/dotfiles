@@ -18,7 +18,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias battery="acpi"
     alias showdesktop="gsettings set org.gnome.desktop.background show-desktop-icons true"
     alias hidedesktop="gsettings set org.gnome.desktop.background show-desktop-icons false"
-    source .bash_banner
+    source ~/.bash_banner
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -GFh'
     alias gpg="gpg2"
