@@ -11,7 +11,9 @@ FREE=$(cat /proc/meminfo | grep MemFree | awk '{ printf $2 }')
 TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
 calc(){ awk "BEGIN { print "$*" }"; }
 PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
-echo "  Memory usage: $((100-$PERCENTFREE))%"
+
+GB=$(echo $(($TOTAL / 1000000)))
+echo "  Memory usage: $((100-$PERCENTFREE))% of $GB GB"
 
 FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
 TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
