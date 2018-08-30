@@ -44,6 +44,7 @@ fi
 
 alias untar="tar -xvf"    
 alias mirror="wget -mk"
+alias ncdu="ncdu --color dark"
 alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 
