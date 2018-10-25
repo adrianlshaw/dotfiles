@@ -28,6 +28,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     #alias battery="ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}'"
     alias latexmk="latex-mk"
     alias want="brew install"
+    alias ncdu="ncdu --color dark"
     alias remove="brew remove"
     alias update="brew update"
     alias upgrade="brew upgrade"
@@ -44,7 +45,6 @@ fi
 
 alias untar="tar -xvf"    
 alias mirror="wget -mk"
-alias ncdu="ncdu --color dark"
 alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 
