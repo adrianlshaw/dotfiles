@@ -34,5 +34,8 @@ IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 "
 IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
 echo "  IP address for $IFACE: $IP"
 
+# Free disk space 
+df -h | grep da | awk '{printf "  " $1 ": " $4 "\n" }'
+
 # Newline
 echo ""
