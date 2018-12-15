@@ -1,2 +1,5 @@
 #My wallpaper
 eval `cat $HOME/.fehbg` &
+
+# Enable transperency effects usign xcompmgr
+xcompmgr -cfF -t-9 -l-11 -r9 -o.95 -D6 &
