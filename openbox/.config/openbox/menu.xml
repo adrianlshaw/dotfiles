@@ -27,6 +27,10 @@
   <item label="Editor">
 	  <action name="Execute"><execute>pluma</execute></action>
   </item>
+  <item label="Settings">
+	  <action name="Execute"><execute>mate-control-center</execute></action>
+  </item>
+
 
 
   <!-- This requires the presence of the 'menu' package to work -->
