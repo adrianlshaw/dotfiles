@@ -1,5 +1,11 @@
-#My wallpaper
-eval `cat $HOME/.fehbg` &
+# Wallpaper
+feh  --bg-scale '/home/user/Pictures/Wallpapers/space2.jpg'
 
-# Enable transperency effects usign xcompmgr
+# Window effects (might be able to replace this with Compiz
 xcompmgr -cfF -t-9 -l-11 -r9 -o.95 -D6 &
+
+# Start conky 
+conky &
+
+# xscreensaver
+xscreensaver &
