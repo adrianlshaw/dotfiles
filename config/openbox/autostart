@@ -1,5 +1,5 @@
 # Wallpaper
-feh  --bg-scale '~/.config/openbox/space.jpg'
+eval `feh  --bg-scale ~/.config/openbox/space.jpg`
 
 # Window effects (might be able to replace this with Compiz
 xcompmgr -cfF -t-9 -l-11 -r9 -o.95 -D6 &
@@ -8,4 +8,4 @@ xcompmgr -cfF -t-9 -l-11 -r9 -o.95 -D6 &
 conky &
 
 # xscreensaver
-xscreensaver &
+xscreensaver -nosplash &
