@@ -148,3 +148,8 @@ done
 cdl(){
    	cd $1 && ls
 }
+
+function avg {
+	awk '{for (i=1;i<=NF;++i) {sum+=$i; ++n}} END {printf "%.4f\n", sum/n}'
+}
+
