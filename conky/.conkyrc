@@ -1,7 +1,7 @@
 conky.config = {
     use_xft = true,
     xftalpha = 0.8,
-    update_interval = 1.0,
+    update_interval = 2.0,
     total_run_times = 0,
     own_window = true,
     own_window_transparent = true,
@@ -19,7 +19,7 @@ conky.config = {
  
     -- placement
     alignment = 'top_left',
-    gap_x = 140,
+    gap_x = 25,
     gap_y = 25,
  
     -- default drawing

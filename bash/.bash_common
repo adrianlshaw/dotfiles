@@ -47,6 +47,14 @@ export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 #	export SSH_AUTH_SOCK=$SSH_AUTH_CONNECT
 #fi
 
+function disco() {
+	while true; do printf "\e[38;5;$(($(od -d -N 2 -A n /dev/urandom)%$(tput colors)))m.\e[0m"; done
+}
+
+function summary() {
+	history | tr -s ' ' | cut -d ' ' -f3 | sort | uniq -c | sort -n | tail | perl -lane 'print $F[1], "\t", $F[0], " ", "" x ($F[0] / 12)'
+}
+
 tablize() {
 	echo "-------------------------------"
 	awk '{printf("| %-15s | %-20s |\n", $1, $2)}'
@@ -135,4 +143,8 @@ for host_key in $(awk '/^HostKey/ {sub(/^HostKey\s+/,"");print $0".pub"};' $SSHD
                 echo $LINE
         fi
 done
+}
+
+cdl(){
+   	cd $1 && ls
 }
