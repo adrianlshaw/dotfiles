@@ -1,6 +1,26 @@
 # Primarily for use on Mac OS X
 # export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
+function encrypt() {
+	if [ "$#" -eq 0 ]; then
+		openssl enc -aes-256-cbc -salt -a
+	elif [ "$#" -eq 2 ]; then
+		openssl enc -aes-256-cbc -salt -a -in "$1" -out "$2" || { echo "File not found"; exit 1; }
+	else
+		echo "Usage: encrypt <input> <output>"
+	fi
+}
+
+function decrypt() {
+	if [ "$#" -eq 0 ]; then
+		openssl enc -aes-256-cbc -d -a
+	elif [ "$#" -eq 2 ]; then
+		openssl enc -aes-256-cbc -d -a -in "$1" -out "$2" || { echo "File not found"; return 1; }
+	else
+		echo "Usage: decrypt <input> <output>"
+	fi
+}
+
 function nonzero_return() {
 	RETVAL=$?
 	echo "$RETVAL"
