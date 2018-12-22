@@ -12,6 +12,9 @@
   <item label="Web browser">
     <action name="Execute"><execute>x-www-browser</execute></action>
   </item>
+  <item label="Files">
+	  <action name="Execute"><execute>caja</execute></action>
+  </item>
   <item label="Steam">
 	  <action name="Execute"><execute>steam</execute></action>
   </item>
