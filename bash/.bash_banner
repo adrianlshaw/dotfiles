@@ -39,7 +39,7 @@ PING=$(cat ~/daily_speedtest.csv  | cut -d ',' -f5 | sort | avg)
 echo "  Ping: $PING ms"
 
 # Free disk space 
-df -h | grep da | awk '{printf "  " $1 ": " $4 "\n" }'
+df -h | egrep -i '(mmc|sd)' | awk '{printf "  " $1 ": " $4 "\n" }'
 
 # Newline
 echo ""
