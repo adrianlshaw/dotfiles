@@ -22,6 +22,8 @@ calc(){ awk "BEGIN { print "$*" }"; }
 if [ $TOTAL -ne 0 ]; then
 	PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
 	echo "  Swap usage: $((100-$PERCENTFREE))%"
+else
+	echo "  No swap"
 fi
 
 # Show system load
