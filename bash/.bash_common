@@ -40,7 +40,11 @@ if [ -f ~/.cargo/env ]; then
 fi
 
 # SSH with Yubikey
-export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+which gpgconf 1>/dev/null 2>&1
+if [ $? -eq 0 ]; then
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+        gpgconf --launch gpg-agent
+fi
 
 #if ! [ -x $(type gpg-connect-agent > /dev/null 2>&1) ]; then
 #	export SSH_AUTH_CONNECT=$(gpg-connect-agent "getinfo ssh_socket_name" /bye | head -n 1 | cut -d ' ' -f 2)
