@@ -48,6 +48,8 @@ alias mirror="wget -mk"
 alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 
+alias grep='grep --color=auto'
+
 # Network tools
 alias localip="ifconfig | grep inet | grep broadcast | awk '{ printf( $2 "\n") }'"
 alias gateway="route -n get default"
