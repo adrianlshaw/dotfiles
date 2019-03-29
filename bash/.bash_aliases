@@ -49,6 +49,7 @@ alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 
 alias grep='grep --color=auto'
+alias tmux="tmux attach || tmux new"
 
 # Network tools
 alias localip="ifconfig | grep inet | grep broadcast | awk '{ printf( $2 "\n") }'"
