@@ -41,6 +41,9 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ping="prettyping"
     alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
     alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+    sleep-in() {
+       echo "Sleeping laptop in $1 minutes..." && sleep $((60 * $1)) && pmset sleepnow
+    }
 fi
 
 alias untar="tar -xvf"    
