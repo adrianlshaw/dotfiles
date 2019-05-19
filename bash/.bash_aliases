@@ -41,13 +41,16 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ping="prettyping"
     alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
     alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+    sleep-in() {
+       echo "Sleeping laptop in $1 minutes..." && sleep $((60 * $1)) && pmset sleepnow
+    }
 fi
 
 alias untar="tar -xvf"    
 alias mirror="wget -mk"
 alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
-
+alias d='docker'
 alias grep='grep --color=auto'
 alias tmux="tmux attach || tmux new"
 
