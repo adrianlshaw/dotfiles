@@ -12,6 +12,14 @@
   <item label="Web browser">
     <action name="Execute"><execute>x-www-browser</execute></action>
   </item>
+  <item label="Android Studio">
+	  <action name="Execute"><execute>snap run android-studio</execute></action></item>
+
+  <item label="Screenshot">
+	  <action name="Execute"><execute>mate-screenshot</execute></action></item>
+  <item label="Software centre">
+	  <action name="Execute"><execute>gnome-software</execute></action>
+  </item>
   <item label="Files">
 	  <action name="Execute"><execute>caja</execute></action>
   </item>
