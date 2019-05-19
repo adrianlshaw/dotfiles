@@ -13,3 +13,4 @@
 	br = branch
 	dif = diff --stat
 	s = status
+	undo = reset --soft HEAD~1
