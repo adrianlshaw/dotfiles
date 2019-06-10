@@ -10,6 +10,7 @@
 	co = checkout
 	all = "!f() { ls | xargs -I{} git -C {} $1; }; f"
 	tree = log --graph --pretty=format:'%C(auto) %h %ad [%an] %m%m %d %s' --abbrev-commit --all --decorate --date=short
+	b = branch
 	br = branch
 	dif = diff --stat
 	s = status
