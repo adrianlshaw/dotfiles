@@ -35,5 +35,12 @@ au BufRead,BufNewFile *.md set filetype=markdown
 cabbr Q quit
 cabbr W write
 
+" Infinite undo
+if !isdirectory($HOME . "/.vim/undodir")
+   call mkdir($HOME . "/.vim/undodir", "p")
+endif
+set undofile
+set undodir=~/.vim/undodir
+
 " Enables Pathogen
 execute pathogen#infect()
