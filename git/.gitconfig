@@ -13,3 +13,5 @@
 	br = branch
 	dif = diff --stat
 	s = status
+	puhs = push
+	pul = pull
