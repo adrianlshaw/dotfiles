@@ -1,12 +1,15 @@
-# Create a style called "satanic" where the text and base colors can be set:
-style "satanic"
+style "molokai"
 {
-   base[NORMAL] = "#CCCCCC"
-   text[NORMAL] = "#000000"
+        text[NORMAL] = "#F8F8F2"
+        base[NORMAL] = "#1B1D1E"
 }
-
-# Apply "satanic" to conversation entry box--where you type.
-widget "*pidgin_conv_entry" style "satanic"
-
-# Apply "satanic" to conversation history pane--where you read the conversation.
-widget "*pidgin_conv_imhtml" style "satanic"
+ 
+style "yellowonred"
+{
+        text[NORMAL] = "#FFFFFF"
+        base[NORMAL] = "#1B1D1E"
+}
+ 
+widget "*pidgin_conv_entry" style "yellowonred"
+widget "*pidgin_conv_imhtml" style "molokai"
+widget "*pidgin_conv_userlist" style "molokai"
