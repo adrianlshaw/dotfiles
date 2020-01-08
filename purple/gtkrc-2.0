@@ -1,0 +1,12 @@
+# Create a style called "satanic" where the text and base colors can be set:
+style "satanic"
+{
+   base[NORMAL] = "#CCCCCC"
+   text[NORMAL] = "#000000"
+}
+
+# Apply "satanic" to conversation entry box--where you type.
+widget "*pidgin_conv_entry" style "satanic"
+
+# Apply "satanic" to conversation history pane--where you read the conversation.
+widget "*pidgin_conv_imhtml" style "satanic"
