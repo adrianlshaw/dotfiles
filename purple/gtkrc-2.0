@@ -1,0 +1,15 @@
+style "molokai"
+{
+        text[NORMAL] = "#F8F8F2"
+        base[NORMAL] = "#1B1D1E"
+}
+ 
+style "yellowonred"
+{
+        text[NORMAL] = "#FFFFFF"
+        base[NORMAL] = "#1B1D1E"
+}
+ 
+widget "*pidgin_conv_entry" style "yellowonred"
+widget "*pidgin_conv_imhtml" style "molokai"
+widget "*pidgin_conv_userlist" style "molokai"

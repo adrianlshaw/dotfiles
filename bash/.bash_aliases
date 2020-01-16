@@ -52,6 +52,7 @@ alias ps="ps aux"
 alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 alias d='docker'
 alias grep='grep --color=auto'
+alias grpe='grep --color=auto'
 alias tmux="tmux attach || tmux new"
 
 # Network tools
