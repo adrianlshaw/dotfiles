@@ -37,6 +37,13 @@ IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 "
 IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
 echo "  IP address for $IFACE: $IP"
 
+# Public IP
+PUBIP=$(ls /tmp/*ydns.eu >/dev/null 2>&1)
+if [ $? -eq 0 ]; then
+		PUBIP=$(cat /tmp/*ydns.eu)
+		echo "  Public IP: $PUBIP"
+fi
+
 # Ping 
 if [ -f ~/daily_speedtest.csv ]; then
 	PING=$(cat ~/daily_speedtest.csv  | cut -d ',' -f5 | sort | avg)
