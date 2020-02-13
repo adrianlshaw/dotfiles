@@ -33,8 +33,9 @@ echo "  System load: $(uptime | awk -F'[a-z]:' '{ print $2}' | cut -d ' ' -f2 | 
 echo "  Uptime: $(uptime | awk '{ printf $3" "$4 }' | cut -d ',' -f1)"
 
 # IP address
-IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1)
+IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1 | tail --lines=1)
 IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
+IP=$(echo $IP | grep -oEw "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}")
 echo "  IP address for $IFACE: $IP"
 
 # Public IP
