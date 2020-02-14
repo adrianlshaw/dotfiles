@@ -44,3 +44,5 @@ set undodir=~/.vim/undodir
 
 " Enables Pathogen
 execute pathogen#infect()
+
+set laststatus=2
