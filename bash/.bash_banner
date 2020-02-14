@@ -1,5 +1,5 @@
 # Banner
-printf "\n  Welcome to $HOSTNAME\n\n" 
+printf "\n  Welcome to $HOSTNAME\n\n"
 
 # Show number of processes
 echo "  Date and time: $(date "+%Y-%m-%d %H:%M:%S")"
@@ -7,23 +7,25 @@ PROCS=$(/bin/ps aux | wc -l | tr -cd '[:digit:]')
 echo "  Processes: $PROCS"
 
 # Show memory usage
-FREE=$(cat /proc/meminfo | grep MemFree | awk '{ printf $2 }')
-TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
-calc(){ awk "BEGIN { print "$*" }"; }
-PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
-
-GB=$(echo $(($TOTAL / 1000000)))
-echo "  Memory usage: $((100-$PERCENTFREE))% of $GB GB"
-
-FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
-TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
-calc(){ awk "BEGIN { print "$*" }"; }
-
-if [ $TOTAL -ne 0 ]; then
+if [ -f /proc/meminfo ]; then
+	FREE=$(cat /proc/meminfo | grep MemFree | awk '{ printf $2 }')
+	TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
+	calc(){ awk "BEGIN { print "$*" }"; }
 	PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
-	echo "  Swap usage: $((100-$PERCENTFREE))%"
-else
-	echo "  No swap"
+
+	GB=$(echo $(($TOTAL / 1000000)))
+	echo "  Memory usage: $((100-$PERCENTFREE))% of $GB GB"
+
+	FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
+	TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
+	calc(){ awk "BEGIN { print "$*" }"; }
+
+	if [ $TOTAL -ne 0 ]; then
+		PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
+		echo "  Swap usage: $((100-$PERCENTFREE))%"
+	else
+		echo "  No swap"
+	fi
 fi
 
 # Show system load
@@ -32,12 +34,6 @@ echo "  System load: $(uptime | awk -F'[a-z]:' '{ print $2}' | cut -d ' ' -f2 | 
 # Uptime
 echo "  Uptime: $(uptime | awk '{ printf $3" "$4 }' | cut -d ',' -f1)"
 
-# IP address
-IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1 | tail --lines=1)
-IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
-IP=$(echo $IP | grep -oEw "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}")
-echo "  IP address for $IFACE: $IP"
-
 # Public IP
 PUBIP=$(ls /tmp/*ydns.eu >/dev/null 2>&1)
 if [ $? -eq 0 ]; then
@@ -45,13 +41,21 @@ if [ $? -eq 0 ]; then
 		echo "  Public IP: $PUBIP"
 fi
 
-# Ping 
+# Local IP address
+if [ -f /proc/net/route ]; then
+	IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1 | tail --lines=1)
+	IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
+	IP=$(echo $IP | grep -oEw "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}")
+	echo "  IP address for $IFACE: $IP"
+fi
+
+# Ping
 if [ -f ~/daily_speedtest.csv ]; then
 	PING=$(cat ~/daily_speedtest.csv  | cut -d ',' -f5 | sort | avg)
 	echo "  Ping: $PING ms"
 fi
 
-# Free disk space 
+# Free disk space
 df -h | egrep -i '(mmc|sd)' | awk '{printf "  " $1 ": " $4 "\n" }'
 
 # Newline
