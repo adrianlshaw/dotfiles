@@ -51,3 +51,10 @@ execute pathogen#infect()
 
 " Needed to get lightline working
 set laststatus=2
+
+" Vim table mode
+set TableModeToggle on
+
+" Open nerdtree automatically
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
