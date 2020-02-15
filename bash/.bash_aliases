@@ -48,6 +48,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     }
 fi
 
+alias lynx='lynx -accept_all_cookies'
 alias q="exit"
 alias untar="tar -xvf"    
 alias mirror="wget -mk"
