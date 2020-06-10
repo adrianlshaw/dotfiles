@@ -16,4 +16,5 @@
 	s = status
 	puhs = push
 	pul = pull
+	deploy = push heroku
 	undo = reset --soft HEAD~1
