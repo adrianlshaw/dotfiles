@@ -42,5 +42,16 @@ endif
 set undofile
 set undodir=~/.vim/undodir
 
+" Highlight current line in a dark grey colour
+set cursorline
+hi CursorLine cterm=NONE ctermbg=233
+
 " Enables Pathogen
 execute pathogen#infect()
+
+" Needed to get lightline working
+set laststatus=2
+
+" Open nerdtree automatically
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif

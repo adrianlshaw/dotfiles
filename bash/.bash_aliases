@@ -9,6 +9,7 @@ alias vi='vim'
 
 if [[ "$unamestr" == 'Linux' ]]; then
     alias ls='ls -GFh --color=auto'
+    alias delete-broken-symlinks='find . -xtype l -delete'
     alias openhere="nautilus . &"
     alias want="sudo apt-get install"
     alias update="sudo apt-get update"
@@ -16,16 +17,17 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias remove="sudo apt-get remove"
     alias search="sudo apt-cache search"
     alias battery="acpi"
+    alias n="gnome-terminal 2&1 > /dev/null &"
     alias showdesktop="gsettings set org.gnome.desktop.background show-desktop-icons true"
     alias hidedesktop="gsettings set org.gnome.desktop.background show-desktop-icons false"
     source ~/.bash_banner
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -GFh'
-    alias gpg="gpg2"
     alias cpu="system_profiler SPHardwareDataType"
     alias record="ffmpeg -r 30 -f avfoundation -capture_cursor 1 -framerate 30 -i '1' -c:v libx264 -crf 0 -x264opts keyint=15:min-keyint=15:scenecut=-1 -preset ultrafast out.mp4"
     alias openhere="open ."
-    #alias battery="ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}'"
+    alias battery="ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}'"
+    alias battery="ioreg -l | grep Capacity | cut -d '"' -f2,3 | grep "CurrentCapacity\|MaxCapacity" | grep -v 'Apple' | awk '{ printf $3 "} | tr '\n' ' ' | awk '{ printf $2/$1*100 "%" }'"
     alias latexmk="latex-mk"
     alias want="brew install"
     alias ncdu="ncdu --color dark"
@@ -46,6 +48,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     }
 fi
 
+alias lynx="lynx -cfg=~/.lynxrc"
+alias q="exit"
 alias untar="tar -xvf"    
 alias mirror="wget -mk"
 alias ps="ps aux"
