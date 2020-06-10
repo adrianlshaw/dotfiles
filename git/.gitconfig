@@ -14,6 +14,7 @@
 	br = branch
 	dif = diff --stat
 	s = status
+	p = push
 	puhs = push
 	pul = pull
 	deploy = push heroku
