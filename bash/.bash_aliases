@@ -48,6 +48,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     }
 fi
 
+alias pkill="pkill -e -f"
 alias lynx="lynx -cfg=~/.lynxrc"
 alias q="exit"
 alias untar="tar -xvf"    
