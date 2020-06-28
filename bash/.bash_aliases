@@ -48,7 +48,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
        echo "Sleeping laptop in $1 minutes..." && sleep $((60 * $1)) && pmset sleepnow
     }
 fi
-alias ports="netstat -tulpn | grep LISTEN | grep 'udp\|tcp' | awk '{ printf $4 $7 \"\n\" }' | grep -v - | cut -d ':' -f2 | grep . | column -t"
 alias pkill="pkill -e -f"
 alias lynx="lynx -cfg=~/.lynxrc"
 alias q="exit"
