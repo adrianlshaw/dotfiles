@@ -14,3 +14,4 @@ export HOMEBREW_NO_ANALYTICS=1
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 alias linux="docker run -ti --rm ubuntu"
+if [ -e /home/user/.nix-profile/etc/profile.d/nix.sh ]; then . /home/user/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
