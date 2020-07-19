@@ -55,7 +55,7 @@ if [ -f ~/daily_speedtest.csv ]; then
 fi
 
 # Free disk space
-df -h | egrep -i '(mmc|sd)' | awk '{printf "  " $1 ": " $4 "\n" }'
+df -h | egrep -i '(mmc|sd|mapper)' | awk '{printf "  " $1 ": " $4 "\n" }'
 
 # Newline
 echo ""
