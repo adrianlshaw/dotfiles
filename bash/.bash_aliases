@@ -6,6 +6,7 @@ unamestr=`uname`
 source ~/.bash_common
 
 alias vi='vim'
+alias diff='diff --color=auto'
 
 if [[ "$unamestr" == 'Linux' ]]; then
     alias sudo='sudo '
