@@ -1,6 +1,12 @@
 # Primarily for use on Mac OS X
 # export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
+# Get color support for 'less'
+export LESS="--RAW-CONTROL-CHARS"
+
+# Use colors for less, man, etc.
+[[ -f ~/.config/less/termcap ]] && . ~/.config/less/termcap
+
 function ports() {
 	sudo netstat -tulpn | grep LISTEN | grep 'udp\|tcp' | awk '{ printf $4 " " $7 "\n" }' | grep -v - | cut -d ':' -f2 | grep . | column -t
 }
