@@ -3,6 +3,8 @@
 
 # Get color support for 'less'
 export LESS="--RAW-CONTROL-CHARS"
+export LESSOPEN="| /usr/bin/highlight %s --out-format xterm256 --force"
+
 
 # Use colors for less, man, etc.
 [[ -f ~/.config/less/termcap ]] && . ~/.config/less/termcap
