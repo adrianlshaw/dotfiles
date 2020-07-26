@@ -1,6 +1,10 @@
 # Primarily for use on Mac OS X
 # export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
+function ports() {
+	sudo netstat -tulpn | grep LISTEN | grep 'udp\|tcp' | awk '{ printf $4 " " $7 "\n" }' | grep -v - | cut -d ':' -f2 | grep . | column -t
+}
+
 function encrypt() {
 	if [ "$#" -eq 0 ]; then
 		openssl enc -aes-256-cbc -salt -a
@@ -97,7 +101,7 @@ function ssh-ls() {
 		fi
 
 		if [[ -n "$THEADDR" && -n "$THEPORT" ]]; then
-			echo "ffs!" | nc "$THEADDR" "$THEPORT" -w 1 > /dev/null
+			echo "ffs!" | nc "$THEADDR" "$THEPORT" -w 1 > /dev/null  2>&1
 			if [ $? -eq 0 ]; then
 				echo -e "$THEHOST" "\033[1;32mOnline\033[0m" | tablize
 			else
