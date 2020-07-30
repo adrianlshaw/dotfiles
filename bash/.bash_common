@@ -15,9 +15,9 @@ function ports() {
 
 function encrypt() {
 	if [ "$#" -eq 0 ]; then
-		openssl enc -aes-256-cbc -salt -a
+		openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -a
 	elif [ "$#" -eq 2 ]; then
-		openssl enc -aes-256-cbc -salt -a -in "$1" -out "$2" || { echo "File not found"; exit 1; }
+		openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -a -in "$1" -out "$2" || { echo "File not found"; exit 1; }
 	else
 		echo "Usage: encrypt <input> <output>"
 	fi
@@ -25,9 +25,9 @@ function encrypt() {
 
 function decrypt() {
 	if [ "$#" -eq 0 ]; then
-		openssl enc -aes-256-cbc -d -a
+		openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -d -a
 	elif [ "$#" -eq 2 ]; then
-		openssl enc -aes-256-cbc -d -a -in "$1" -out "$2" || { echo "File not found"; return 1; }
+		openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -d -a -in "$1" -out "$2" || { echo "File not found"; return 1; }
 	else
 		echo "Usage: decrypt <input> <output>"
 	fi
