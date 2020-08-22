@@ -1,0 +1,33 @@
+#!/bin/bash
+set -x
+echo "Attempt cron $(date)" >> /home/user/attempts.txt
+
+# If started as root, then re-start as user "user":
+#if [ "$(id -u)" -eq 0 ]; then
+#    exec sudo -H -u user $0 "$@" # $0 is the name of the current script
+#    echo "This is never reached."; # because of "exec" above
+#fi
+
+user=$(whoami)
+
+fl=$(find /proc -maxdepth 2 -user $user -name environ -print -quit)
+while [ -z $(grep -z DBUS_SESSION_BUS_ADDRESS "$fl" | cut -d= -f2- | tr -d '\000' ) ]
+do
+  fl=$(find /proc -maxdepth 2 -user $user -name environ -newer "$fl" -print -quit)
+done
+
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS "$fl" | cut -d= -f2-)
+
+
+DIR=$(mktemp -d)
+
+#export GNOME_DESKTOP_SESSION_ID=true
+#export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session -n)/environ | cut -d= -f2-)
+#export PID=$(pgrep gnome-session -u $USER)
+
+cd $DIR && \
+echo "Now in $DIR" && \
+	/usr/bin/wget -O - -q reddit.com/r/wallpaper.json | jq '.data.children[] | select(.data.title | contains("3840")) | .data.url ' | grep jpg | head --lines=1 | xargs wget && \
+NAME=$(ls | head -n 1) && \
+gsettings set org.gnome.desktop.background picture-uri file:///"$DIR/$NAME"
+echo "MY UID IS $UID"
