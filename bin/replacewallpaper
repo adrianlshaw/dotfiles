@@ -1,4 +1,6 @@
 #!/bin/bash
+# Add the following to crontab: 0 * * * * /home/user/replacewallpaper > /home/user/cron.log 2>&1
+
 set -x
 echo "Attempt cron $(date)" >> /home/user/attempts.txt
 
@@ -27,7 +29,7 @@ DIR=$(mktemp -d)
 
 cd $DIR && \
 echo "Now in $DIR" && \
-	/usr/bin/wget -O - -q reddit.com/r/wallpaper.json | jq '.data.children[] | select(.data.title | contains("3840")) | .data.url ' | grep jpg | head --lines=1 | xargs wget && \
+	/usr/bin/wget -O - -q reddit.com/r/wallpaper.json | jq '.data.children[] | select(.data.title | contains("3840")) | .data.url ' | grep "jpg\|png" | head --lines=1 | xargs wget && \
 NAME=$(ls | head -n 1) && \
 gsettings set org.gnome.desktop.background picture-uri file:///"$DIR/$NAME"
 echo "MY UID IS $UID"
