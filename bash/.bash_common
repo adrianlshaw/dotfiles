@@ -151,7 +151,7 @@ echo $LINE
 for host_key in $(ls /etc/ssh/ssh_host_*pub); do
         cipher=$(echo $host_key | sed -r 's/^.*ssh_host_([^_]+)_key\.pub$/\1/'| tr '[a-z]' '[A-Z]')
         if [[ -f "$host_key" ]]; then
-                md5=$(ssh-keygen -l -f $host_key | awk '{print $2}')
+                md5=$(awk '{print $2}' $host_key | base64 -d | md5sum -b | cut -d ' ' -f1 | sed 's/.\{2\}/&:/g' | sed 's/.$//')
                 sha256=$(awk '{print $2}' $host_key | base64 -d | sha256sum -b | awk '{print $1}' | xxd -r -p | base64)
 
                 echo $cipher MD5 $md5 | ssh_key_tablize
