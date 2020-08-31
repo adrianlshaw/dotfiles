@@ -148,7 +148,7 @@ echo $LINE
 
 
 # fingerprints
-for host_key in $(awk '/^HostKey/ {sub(/^HostKey\s+/,"");print $0".pub"};' $SSHD_CONFIG); do
+for host_key in $(ls /etc/ssh/ssh_host_*pub); do
         cipher=$(echo $host_key | sed -r 's/^.*ssh_host_([^_]+)_key\.pub$/\1/'| tr '[a-z]' '[A-Z]')
         if [[ -f "$host_key" ]]; then
                 md5=$(ssh-keygen -l -f $host_key | awk '{print $2}')
