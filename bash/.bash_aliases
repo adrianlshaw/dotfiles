@@ -7,6 +7,7 @@ source ~/.bash_common
 
 alias vi='vim'
 alias diff='diff --color=auto'
+alias gdb="gdb -q"
 
 if [[ "$unamestr" == 'Linux' ]]; then
     alias sudo='sudo '
