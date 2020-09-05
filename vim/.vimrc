@@ -55,3 +55,9 @@ set laststatus=2
 " Open nerdtree automatically
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"
+" Format C code automatically
+":autocmd BufWritePost *.c execute '!astyle' shellescape(expand('%'), 1)
+
+" Format GO code automatically
+:autocmd BufWritePost *.go execute '!go fmt' shellescape(expand('%'), 1)
