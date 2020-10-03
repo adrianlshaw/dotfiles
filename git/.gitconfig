@@ -5,6 +5,9 @@
 	ui = auto
 	status = auto
 	branch = auto
+[pull]
+   rebase = true
+
 
 [alias]
 	co = checkout
