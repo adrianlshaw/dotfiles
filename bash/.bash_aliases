@@ -10,6 +10,7 @@ alias diff='diff --color=auto'
 alias gdb="gdb -q"
 
 if [[ "$unamestr" == 'Linux' ]]; then
+    alias open='xdg-open'
     alias sudo='sudo '
     alias ls='ls -GFh --color=auto'
     alias delete-broken-symlinks='find . -xtype l -delete'
