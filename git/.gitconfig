@@ -20,6 +20,7 @@
 	ad = add
 	p = push
 	puhs = push
+	psuh = push
 	pul = pull
 	deploy = push heroku
 	undo = reset --soft HEAD~1
