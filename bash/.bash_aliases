@@ -38,6 +38,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias remove="brew remove"
     alias update="brew update"
     alias upgrade="brew upgrade"
+    alias x86shell="arch -x86_64 /bin/bash"
     alias badge="tput bel" # mark an alert in the terminal
     alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
