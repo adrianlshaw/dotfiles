@@ -94,3 +94,5 @@ if ! [ -x $(type docker > /dev/null 2>&1) ]; then
 	alias delete_alldockerimages="docker rmi $(docker images -q)"
 fi
 
+alias hstat="curl -o /dev/null --silent --head --write-out '%{http_code}\n'" $1
+
