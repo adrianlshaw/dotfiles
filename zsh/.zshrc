@@ -102,3 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# Confirmed to work by adrianlshaw but slow 
+#bindkey '\t\t' autosuggest-accept
+setopt noautomenu
+setopt nomenucomplete
