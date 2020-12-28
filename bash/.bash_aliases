@@ -3,11 +3,13 @@
 
 unamestr=`uname`
 
-source ~/.bash_common
-
 alias vi='vim'
 alias diff='diff --color=auto'
 alias gdb="gdb -q"
+
+if [[ "$SHELL" == "/bin/bash" ]]; then
+	source ~/.bash_common
+fi
 
 if [[ "$unamestr" == 'Linux' ]]; then
     alias open='xdg-open'

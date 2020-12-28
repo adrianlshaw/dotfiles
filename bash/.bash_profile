@@ -22,4 +22,6 @@ if [[ $(arch) == "arm64" ]]; then
 	export PATH="/opt/homebrew/bin:$PATH"
 fi
 
+source ~/.bash_common
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
