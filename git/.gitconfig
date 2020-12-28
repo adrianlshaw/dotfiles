@@ -19,6 +19,7 @@
 	s = status
 	ad = add
 	p = push
+	comit = commit
 	puhs = push
 	psuh = push
 	pul = pull
