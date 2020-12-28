@@ -15,3 +15,11 @@ export HOMEBREW_NO_ANALYTICS=1
 
 alias linux="docker run -ti --rm ubuntu"
 if [ -e /home/user/.nix-profile/etc/profile.d/nix.sh ]; then . /home/user/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+source "$HOME/.cargo/env"
+
+if [[ $(arch) == "arm64" ]]; then
+	export SSH_AUTH_SOCK=$HOME/.sekey/ssh-agent.ssh
+	export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
