@@ -59,5 +59,12 @@ set laststatus=2
 " Format C code automatically
 ":autocmd BufWritePost *.c execute '!astyle' shellescape(expand('%'), 1)
 
+" Go to last point in file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+
 " Format GO code automatically
 :autocmd BufWritePost *.go execute '!go fmt' shellescape(expand('%'), 1)
