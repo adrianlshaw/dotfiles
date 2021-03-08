@@ -178,3 +178,10 @@ function avg {
 	awk '{for (i=1;i<=NF;++i) {sum+=$i; ++n}} END {printf "%.4f\n", sum/n}'
 }
 
+function tcpdump-src {
+	sudo tcpdump -nvvv -i any  src host $1 
+}
+
+function tcpdump-port {
+	sudo tcpdump -nvvv -i any "port $1"
+}
