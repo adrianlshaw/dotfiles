@@ -68,3 +68,6 @@ endif
 
 " Format GO code automatically
 :autocmd BufWritePost *.go execute '!go fmt' shellescape(expand('%'), 1)
+
+" Strip trailing whitespace from the following file types 
+autocmd FileType c,cpp,go,rst,md,txt autocmd BufWritePre <buffer> %s/\s\+$//e
