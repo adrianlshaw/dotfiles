@@ -128,7 +128,7 @@ function ssh-ls() {
 			THEHOST=""
 			THEPORT=""
 			THEADDR=""
-		fi
+			fi
 
 	done < "$FILE"
 
@@ -184,4 +184,8 @@ function tcpdump-src {
 
 function tcpdump-port {
 	sudo tcpdump -nvvv -i any "port $1"
+}
+
+function replace {
+	find ./ -type f -exec sed -i -e 's/$1/$2/g' {} \;
 }
