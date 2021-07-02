@@ -8,7 +8,7 @@ echo "  Processes: $PROCS"
 
 # Show memory usage
 if [ -f /proc/meminfo ]; then
-	FREE=$(cat /proc/meminfo | grep MemAvailable | awk '{ printf $2 }')
+	FREE=$(cat /proc/meminfo | grep "MemAvailable\|MemFree" | awk '{ printf $2 }')
 	TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
 	calc(){ awk "BEGIN { print "$*" }"; }
 	PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
