@@ -19,9 +19,11 @@
 	s = status
 	ad = add
 	p = push
+	idff = diff
 	comit = commit
 	puhs = push
 	psuh = push
+	puhs = push
 	pul = pull
 	deploy = push heroku
 	undo = reset --soft HEAD~1
