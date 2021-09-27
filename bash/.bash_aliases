@@ -26,6 +26,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias n="gnome-terminal 2&1 > /dev/null &"
     alias showdesktop="gsettings set org.gnome.desktop.background show-desktop-icons true"
     alias hidedesktop="gsettings set org.gnome.desktop.background show-desktop-icons false"
+    alias restartgnomeshell="killall -SIGQUIT gnome-shell"
     source ~/.bash_banner
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -GFh'
