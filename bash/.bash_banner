@@ -7,25 +7,25 @@ PROCS=$(/bin/ps aux | wc -l | tr -cd '[:digit:]')
 echo "  Processes: $PROCS"
 
 # Show memory usage
-if [ -f /proc/meminfo ]; then
-	FREE=$(cat /proc/meminfo | grep "MemAvailable\|MemFree" | awk '{ printf $2 }')
-	TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
-	calc(){ awk "BEGIN { print "$*" }"; }
-	PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
-	GB=$(echo $(($TOTAL / 1000000)))
-	echo "  Memory usage: $((100-$PERCENTFREE))% of $GB GB"
+#if [ -f /proc/meminfo ]; then
+#FREE=$(cat /proc/meminfo | grep "MemAvailable\|MemFree" | awk '{ printf $2 }')
+#	TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
+#calc(){ awk "BEGIN { print "$*" }"; }
+#	PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
+#	GB=$(echo $(($TOTAL / 1000000)))
+#	echo "  Memory usage: $((100-$PERCENTFREE))% of $GB GB"
 
-	FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
-	TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
-	calc(){ awk "BEGIN { print "$*" }"; }
+#	FREE=$(cat /proc/meminfo | grep SwapFree | awk '{ printf $2 }')
+#	TOTAL=$(cat /proc/meminfo | grep SwapTotal | awk '{ printf $2 }')
+#	calc(){ awk "BEGIN { print "$*" }"; }
 
-	if [ $TOTAL -ne 0 ]; then
-		PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
-		echo "  Swap usage: $((100-$PERCENTFREE))%"
-	else
-		echo "  No swap"
-	fi
-fi
+#	if [ $TOTAL -ne 0 ]; then
+#		PERCENTFREE=$(bc <<< 100*$(calc $FREE/$TOTAL) | cut -d. -f1)
+#		echo "  Swap usage: $((100-$PERCENTFREE))%"
+#	else
+#		echo "  No swap"
+#	fi
+#fi
 
 # Show system load
 echo "  System load: $(uptime | awk -F'[a-z]:' '{ print $2}' | cut -d ' ' -f2 | cut -d ',' -f1)"
