@@ -189,3 +189,12 @@ function tcpdump-port {
 function replace {
 	find ./ -type f -exec sed -i -e 's/$1/$2/g' {} \;
 }
+
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+	gsettings set org.gnome.desktop.privacy remember-recent-files false
+	# Skip typing cd to change directory
+	shopt -s autocd
+fi
+
+
