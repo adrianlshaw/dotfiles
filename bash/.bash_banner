@@ -37,7 +37,7 @@ echo "  Uptime: $(uptime | awk '{ printf $3" "$4 }' | cut -d ',' -f1)"
 PUBIP=$(ls /tmp/*ydns.eu >/dev/null 2>&1)
 if [ $? -eq 0 ]; then
 		PUBIP=$(cat /tmp/*ydns.eu)
-		echo "  Public IP: $PUBIP"
+		echo "  Public IPv4: $PUBIP"
 fi
 
 # Local IP address
@@ -45,7 +45,10 @@ if [ -f /proc/net/route ]; then
 	IFACE=$(cat /proc/net/route | cut -d ' ' -f1  | tail -n +2 | awk ' { printf $1 " " $2"\n" } ' | grep 00000000 | cut -d ' ' -f1 | tail --lines=1)
 	IP=$(ip addr show $IFACE | grep inet | head -1 | awk '{ printf $2 }' | cut -d '/' -f1)
 	IP=$(echo $IP | grep -oEw "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}")
-	echo "  IP address for $IFACE: $IP"
+	echo "  IPv4 address for $IFACE: $IP"
+	PUBIP6=$(ip addr show $IFACE | grep inet6 | grep temporary | grep dynamic | grep -v fd87 | awk '{ printf $2 }' | cut -d '/' -f1)
+	echo "  IPv6 address for $IFACE: $PUBIP6"
+
 fi
 
 # Ping
