@@ -7,7 +7,11 @@ PROCS=$(/bin/ps aux | wc -l | tr -cd '[:digit:]')
 echo "  Processes: $PROCS"
 
 # Show memory usage
-#if [ -f /proc/meminfo ]; then
+if [ -f /proc/meminfo ]; then
+	MEM=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
+	MEMSIZE=$(echo $(free -m | awk 'NR==2{printf "%.0f", $2 }'))
+	echo "  Memory: $MEM ($MEMSIZE MB)"
+fi
 #FREE=$(cat /proc/meminfo | grep "MemAvailable\|MemFree" | awk '{ printf $2 }')
 #	TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{ printf $2 }')
 #calc(){ awk "BEGIN { print "$*" }"; }
