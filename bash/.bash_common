@@ -4,7 +4,7 @@
 # Get color support for 'less'
 export LESS="--RAW-CONTROL-CHARS"
 if [[ "$unamestr" == 'Darwin' ]]; then
-	HIPATH="/usr/local/bin"
+	HIPATH="/opt/homebrew/bin"
 else
 	HIPATH="/usr/bin"
 fi
@@ -191,7 +191,7 @@ function replace {
 }
 
 unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
+if [[ $(which gsettings) ]]; then
 	gsettings set org.gnome.desktop.privacy remember-recent-files false
 	# Skip typing cd to change directory
 	shopt -s autocd
