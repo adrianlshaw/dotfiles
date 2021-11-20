@@ -6,6 +6,7 @@ unamestr=`uname`
 alias vi='vim'
 alias diff='diff --color=auto'
 alias gdb="gdb -q"
+alais hotp="htop"
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	source ~/.bash_common
