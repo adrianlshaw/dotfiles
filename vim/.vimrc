@@ -71,3 +71,9 @@ endif
 
 " Strip trailing whitespace from the following file types 
 autocmd FileType c,cpp,go,rst,md,txt autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Use 
+nnoremap <silent> ] :BTags<CR>
+
+" Format TEX files so that they don't go over 80 chars in width
+au BufRead,BufNewFile *.tex setlocal textwidth=80
