@@ -1,3 +1,3 @@
 function ps
-        ps aux $argv;
+        /usr/bin/ps aux $argv;
 end
