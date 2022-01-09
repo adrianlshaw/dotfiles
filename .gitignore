@@ -4,3 +4,4 @@ vim/.vim/undodir/*
 vim/.vim/.netrwhist
 weechat/.weechat/logs/*
 weechat/.weechat/weechat.log
+weechat/.weechat/*.conf
