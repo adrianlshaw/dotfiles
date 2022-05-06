@@ -7,6 +7,8 @@ alias vi='vim'
 alias diff='diff --color=auto'
 alias gdb="gdb -q"
 alias hotp="htop"
+alias cast="catt -d 'TV'"
+alias youtube-dl="yt-dlp"
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	source ~/.bash_common
@@ -65,7 +67,8 @@ alias sloc="find . -name \"*.c\" -print | xargs wc -l "
 alias d='docker'
 alias grep='grep --color=auto'
 alias grpe='grep --color=auto'
-alias tmux="tmux attach || tmux new"
+#alias tmux="tmux attach || tmux new"
+alias tmux="tmux new-session \; split-window -h \; split-window -v \; attach"
 
 # Network tools
 alias localip="ifconfig | grep inet | grep broadcast | awk '{ printf( $2 "\n") }'"

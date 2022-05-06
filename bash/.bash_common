@@ -191,7 +191,7 @@ function replace {
 }
 
 unamestr=`uname`
-if [[ $(which gsettings) ]]; then
+if [[ "$unamestr" == 'Linux' ]]; then
 	gsettings set org.gnome.desktop.privacy remember-recent-files false
 	# Skip typing cd to change directory
 	shopt -s autocd
