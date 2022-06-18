@@ -223,5 +223,6 @@ function keys {
 	    tablize $cipher SHA-256 $sha256
 	    echo $LINE
 	done
-
 }
+
+export PATH=$PATH:~/.bin/
