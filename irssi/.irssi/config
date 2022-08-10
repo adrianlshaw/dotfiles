@@ -87,7 +87,7 @@ chatnets = {
   };
   Libera = {
     type = "IRC";
-    autosendcmd = "/msg nickserv identify username123 password123 ";
+    autosendcmd = "/msg nickserv identify irl25519 bigbossinyourmum2000 ";
     max_kicks = "1";
     max_msgs = "4";
     max_whois = "1";

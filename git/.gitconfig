@@ -27,17 +27,14 @@
 	pul = pull
 	deploy = push heroku
 	undo = reset --soft HEAD~1
+	cam = "!f() { git add -A -v && git commit -m 'checkpoint' --no-verify; }; f"
+	wip = "!f() { HASH=`git log --color=always --date=format:'%y-%m-%d %H%M' --pretty=format:'%Cred%H %Cgreen%cd %Creset%s %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' "$@" | rg -v ' checkpoint <' | cut -f1 -d' ' | head -n 1` | rg -v ' checkpoint <' | cut -f1 -d' ' | head -n 1`; git reset --soft $HASH }; f"
 [pager]
 	branch = false
 
 [core]
 
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [init]
 	defaultBranch = main
 [submodule]

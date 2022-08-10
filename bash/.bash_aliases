@@ -69,6 +69,8 @@ alias grep='grep --color=auto'
 alias grpe='grep --color=auto'
 #alias tmux="tmux attach || tmux new"
 alias tmux="tmux new-session \; split-window -h \; split-window -v \; attach"
+alias grep='grep --color=auto -s'
+alias grpe='grep --color=auto -s'
 
 # Network tools
 alias localip="ifconfig | grep inet | grep broadcast | awk '{ printf( $2 "\n") }'"

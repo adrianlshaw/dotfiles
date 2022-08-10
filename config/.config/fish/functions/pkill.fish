@@ -1,3 +1,3 @@
 function pkill
-        pkill -e -f $argv;
+        /usr/bin/pkill -e -f $argv;
 end

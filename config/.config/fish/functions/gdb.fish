@@ -1,3 +1,3 @@
 function gdb
-        gdb -q $argv;
+        /usr/bin/gdb -q $argv;
 end

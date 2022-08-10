@@ -1,3 +1,3 @@
 function lynx
-        lynx -cfg $argv;
+        /usr/bin/lynx -cfg $argv;
 end
