@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo Available displays:
+
+xrandr -q | grep " connected" | cut -d ' ' -f1
+
+if [ "$#" -ne 2 ]; then
+	echo "brightness <display> <level between 0.0 and 1.0>"
+	exit 1
+else
+	xrandr --output "$1" --brightness "$2"
+fi
