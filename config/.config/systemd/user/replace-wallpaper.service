@@ -4,8 +4,8 @@ Description=Replace Wallpaper
 [Service]
 Type=simple
 ExecStart=/home/user/.bin/replacewallpaper
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=default.target
-After=network-online.target
-Wants=network-online.target
