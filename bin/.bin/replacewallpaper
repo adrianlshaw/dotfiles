@@ -1,5 +1,5 @@
 #!/bin/bash
-# Add the following to crontab: 0 * * * * /home/user/dotfiles/bin/replacewallpaper > /home/user/cron.log 2>&1
+# Add the following to crontab: 0 * * * * /home/user/dotfiles/bin/.replacewallpaper > /home/user/cron.log 2>&1
 set -e
 set -o pipefail
 
@@ -35,6 +35,7 @@ echo "Now in $DIR" && \
 	fi
 	cat /tmp/file | jq '.data.children[] | select(.data.title | contains("[3840")) | .data.url ' | grep "jpg\|png" | head --lines=1 | xargs wget && \
 NAME=$(ls | head -n 1) && \
-gsettings set org.gnome.desktop.background picture-uri file:///"$DIR/$NAME"
-gsettings set org.gnome.desktop.background picture-uri-dark file:///"$DIR/$NAME"
+gsettings set org.gnome.desktop.background picture-uri file:///"$DIR/$NAME" || true
+gsettings set org.gnome.desktop.background picture-uri-dark file:///"$DIR/$NAME" || true
+feh --no-fehbg --bg-scale "$DIR/$NAME" || true
 echo "MY UID IS $UID"
