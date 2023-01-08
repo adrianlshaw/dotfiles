@@ -1,5 +1,5 @@
 #!/bin/bash
-# Add the following to crontab: 0 * * * * /home/user/dotfiles/bin/.replacewallpaper > /home/user/cron.log 2>&1
+# Add the following to crontab: 0 * * * * /home/user/.bin/replacewallpaper > /home/user/cron.log 2>&1
 set -e
 set -o pipefail
 
