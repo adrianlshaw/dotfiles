@@ -1,0 +1,9 @@
+[Unit]
+Description=Replace Wallpaper
+
+[Service]
+Type=simple
+ExecStart=/home/user/.bin/replacewallpaper
+
+[Install]
+WantedBy=default.target

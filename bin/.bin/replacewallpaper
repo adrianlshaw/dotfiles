@@ -31,4 +31,5 @@ echo "Now in $DIR" && \
 	/usr/bin/wget -O - -q reddit.com/r/wallpaper.json | jq '.data.children[] | select(.data.title | contains("[3840")) | .data.url ' | grep "jpg\|png" | head --lines=1 | xargs wget && \
 NAME=$(ls | head -n 1) && \
 gsettings set org.gnome.desktop.background picture-uri file:///"$DIR/$NAME"
+gsettings set org.gnome.desktop.background picture-uri-dark file:///"$DIR/$NAME"
 echo "MY UID IS $UID"

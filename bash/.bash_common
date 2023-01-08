@@ -7,6 +7,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 	HIPATH="/opt/homebrew/bin"
 else
 	HIPATH="/usr/bin"
+	systemctl --user enable replace-wallpaper.service || true
 fi
 
 export LESSOPEN="| $HIPATH/highlight %s --out-format xterm256 --force"
