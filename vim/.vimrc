@@ -3,6 +3,9 @@ set nu
 set background=dark
 filetype plugin indent on
 
+" Disable startup message
+set shortmess+=I
+
 " Highlight search results
 set incsearch
 
