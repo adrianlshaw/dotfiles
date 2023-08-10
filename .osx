@@ -34,3 +34,5 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true
 
+# Disable marks in terminal
+defaults write com.apple.Terminal ShowLineMarks -int 0

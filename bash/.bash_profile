@@ -27,4 +27,13 @@ if [ -f $FILE ]; then
 	source $FILE 
 fi
 
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+#export BASH_COMPLETION_COMPAT_DIR="/opt/homebrew/etc/bash_completion.d"
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=$PATH:/usr/local/texlive/2021/bin/universal-darwin
+export SSH_AUTH_SOCK=/Users/adrian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+. "$HOME/.cargo/env"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && . "$HOME/.fig/shell/bash_profile.post.bash"

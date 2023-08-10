@@ -10,6 +10,7 @@
 
 
 [alias]
+	cl = clone
 	co = checkout
 	all = "!f() { ls | xargs -I{} git -C {} $1; }; f"
 	tree = log --graph --pretty=format:'%C(auto) %h %ad [%an] %m%m %d %s' --abbrev-commit --all --decorate --date=short
@@ -33,6 +34,7 @@
 	branch = false
 
 [core]
+	autocrlf = false
 
 
 [init]
@@ -41,3 +43,5 @@
 	recurse = true
 [push]
 	autoSetupRemote = true
+[branch]
+	autoSetupMerge = always
