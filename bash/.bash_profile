@@ -34,6 +34,15 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/usr/local/texlive/2021/bin/universal-darwin
 export SSH_AUTH_SOCK=/Users/adrian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 . "$HOME/.cargo/env"
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && . "$HOME/.fig/shell/bash_profile.post.bash"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# Disable bracketed paste mode, which causes characters 
+# to append and prepend to pasted content
+printf '\e[?2004l'
+
+export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
+
