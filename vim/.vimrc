@@ -80,3 +80,13 @@ nnoremap <silent> ] :BTags<CR>
 
 " Format TEX files so that they don't go over 80 chars in width
 au BufRead,BufNewFile *.tex setlocal textwidth=80
+
+" Syntastic stuff
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
