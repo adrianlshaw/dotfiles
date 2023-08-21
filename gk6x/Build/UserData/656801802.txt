@@ -1,0 +1,6 @@
+﻿[Base,Layer1,Layer2,Layer3,FnLayer1,FnLayer2,FnLayer3]
+
+LCtrl:CapsLock
+CapsLock:LCtrl
+RShift:PageUp
+Delete:PageDown
