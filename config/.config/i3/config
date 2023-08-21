@@ -31,6 +31,8 @@ exec --no-startup-id xautolock -time 10 -locker i3lock
 exec --no-startup-id feh --bg-scale /home/user/Pictures/wallpaper.png
 #exec --no-startup-id xrandr --output VGA-1 --right-of DP-1 --auto
 exec --no-startup-id xrandr --output DP-0 --primary --auto --output HDMI-0 --right-of DP-0 --auto
+exec --no-startup-id /usr/lib/gsd-xsettings
+# last one above needed for dark mode 
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
