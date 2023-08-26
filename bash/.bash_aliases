@@ -9,6 +9,7 @@ alias gdb="gdb -q"
 alias hotp="htop"
 alias cast="catt -d 'TV'"
 alias youtube-dl="yt-dlp"
+alias gerp="grep"
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	source ~/.bash_common
