@@ -191,6 +191,10 @@ function replace {
 	find ./ -type f -exec sed -i -e 's/$1/$2/g' {} \;
 }
 
+clip_video () {
+          ffmpeg -ss "$2" -i "$1" -t "$3" -c copy "$4"
+}
+
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
 	gsettings set org.gnome.desktop.privacy remember-recent-files false
