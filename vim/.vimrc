@@ -37,6 +37,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Fat-fingered colon shift shortcuts
 cabbr Q quit
 cabbr W write
+command! WQ :wq
 
 " Infinite undo
 if !isdirectory($HOME . "/.vim/undodir")
