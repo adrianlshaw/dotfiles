@@ -33,7 +33,9 @@ fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/usr/local/texlive/2021/bin/universal-darwin
 export SSH_AUTH_SOCK=/Users/adrian/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-. "$HOME/.cargo/env"
+if [ -f ~/.cargo/env ]; then
+	. "$HOME/.cargo/env"
+fi
 export HOMEBREW_NO_ENV_HINTS=1
 
 # Fig post block. Keep at the bottom of this file.
