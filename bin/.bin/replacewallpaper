@@ -28,7 +28,7 @@ DIR=$(mktemp -d)
 
 cd $DIR && \
 echo "Now in $DIR" && \
-	/usr/bin/wget -O /tmp/file -q reddit.com/r/wallpaper.json
+	curl 'https://old.reddit.com/r/wallpaper.json' --compressed -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8' -H 'Accept-Language: en-GB,en;q=0.5' -H 'Accept-Encoding: gzip, deflate, br' -H 'DNT: 1' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: cross-site' -H 'Connection: keep-alive' reddit.com/r/wallpaper.json > /tmp/file
 	if [[ $? -ne 0 ]]; then
 		echo Wget failed. Maybe the network is not up.
 		exit 1
