@@ -4,6 +4,12 @@
 #
 # Executed by startx (run your window manager from here)
 
+if [[ $(uname -s) == "Darwin" ]]; then
+  return 1 
+fi
+
+export FOO=BAR
+
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
         for f in /etc/X11/xinit/xinitrc.d/*; do
                 [ -x "$f" ] && . "$f"
