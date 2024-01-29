@@ -198,9 +198,11 @@ clip_video () {
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
 	systemctl --user enable replace-wallpaper
-	gsettings set org.gnome.desktop.privacy remember-recent-files false
-	gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
-	gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+	if command -v gsettings &> /dev/null; then
+		gsettings set org.gnome.desktop.privacy remember-recent-files false
+		gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+		gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+	fi
 	# Skip typing cd to change directory
 	shopt -s autocd
 fi
