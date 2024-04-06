@@ -53,7 +53,7 @@ if [ -f /proc/net/route ]; then
 	PUBIP6=$(ip addr show $IFACE | grep inet6 | grep temporary | grep dynamic | grep -v fd87 | awk '{ printf $2 }' | cut -d '/' -f1)
 	echo "  IPv6 address for $IFACE: $PUBIP6"
 	if command -v "curl" &> /dev/null; then
-		PUBIP4=$(curl ipinfo.io/ip --connect-timeout 1)
+		PUBIP4=$(curl ipinfo.io/ip --connect-timeout 1 --silent)
 		echo "  Public IPv4: $PUBIP4"
 	fi
 
