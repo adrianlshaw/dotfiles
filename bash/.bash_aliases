@@ -40,6 +40,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     #alias battery="ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%\n", $10/$5 * 100)}'"
     #alias battery="ioreg -l | grep Capacity | cut -d '"' -f2,3 | grep "CurrentCapacity\|MaxCapacity" | grep -v 'Apple' | awk '{ printf $3 "} | tr '\n' ' ' | awk '{ printf $2/$1*100 "%" }'"
     alias latexmk="latex-mk"
+    alias b="brew"
     alias want="brew install"
     alias ncdu="ncdu --color dark"
     alias remove="brew remove"
