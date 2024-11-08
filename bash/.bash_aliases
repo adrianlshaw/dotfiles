@@ -33,6 +33,8 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias restartgnomeshell="killall -SIGQUIT gnome-shell"
     source ~/.bash_banner
 elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias copy="pbcopy"
+    alias paste="pbpaste"
     alias ls='ls -GFh'
     alias cpu="system_profiler SPHardwareDataType"
     alias record="ffmpeg -r 30 -f avfoundation -capture_cursor 1 -framerate 30 -i '1' -c:v libx264 -crf 0 -x264opts keyint=15:min-keyint=15:scenecut=-1 -preset ultrafast out.mp4"
@@ -41,6 +43,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     #alias battery="ioreg -l | grep Capacity | cut -d '"' -f2,3 | grep "CurrentCapacity\|MaxCapacity" | grep -v 'Apple' | awk '{ printf $3 "} | tr '\n' ' ' | awk '{ printf $2/$1*100 "%" }'"
     alias latexmk="latex-mk"
     alias b="brew"
+    alias p="profanity"
     alias want="brew install"
     alias ncdu="ncdu --color dark"
     alias remove="brew remove"
