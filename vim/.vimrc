@@ -79,6 +79,13 @@ autocmd FileType c,cpp,go,rst,md,txt autocmd BufWritePre <buffer> %s/\s\+$//e
 " Use 
 nnoremap <silent> ] :BTags<CR>
 
+" Map jj to ESC
+inoremap jj <esc>
+inoremap JJ <esc>
+
+cnoremap jj <C-c>
+cnoremap JJ <C-c>
+
 " Format TEX files so that they don't go over 80 chars in width
 au BufRead,BufNewFile *.tex setlocal textwidth=80
 
