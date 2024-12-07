@@ -35,6 +35,7 @@
 
 [core]
 	autocrlf = false
+	excludesfile = ~/.gitignore_global
 
 
 [init]
