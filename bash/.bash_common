@@ -206,6 +206,8 @@ if [[ "$unamestr" == 'Linux' ]]; then
 	fi
 	# Skip typing cd to change directory
 	shopt -s autocd
+else
+	source /opt/homebrew/Cellar/fzf/0.60.3/shell/key-bindings.bash
 fi
 
 function keys {
