@@ -197,6 +197,7 @@ clip_video () {
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
+        source /usr/share/doc/fzf/examples/key-bindings.bash
 	systemctl --user enable replace-wallpaper
 	if command -v gsettings &> /dev/null; then
 		gsettings set org.gnome.desktop.privacy remember-recent-files false
