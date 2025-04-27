@@ -48,3 +48,12 @@ printf '\e[?2004l'
 
 export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
 
+
+# Created by `pipx` on 2025-01-12 18:59:23
+export PATH="$PATH:/Users/adrian/.dotfiles/gnome/.local/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/adrian/.lmstudio/bin"
+
+# Added by Windsurf
+export PATH="/Users/adrian/.codeium/windsurf/bin:$PATH"

@@ -15,6 +15,10 @@ export LESSOPEN="| $HIPATH/highlight %s --out-format xterm256 --force"
 # Use colors for less, man, etc.
 [[ -f ~/.config/less/termcap ]] && . ~/.config/less/termcap
 
+function instagram-dl() {
+	youtube-dl  -f "bv*[vcodec^=avc]+ba[ext=m4a]/b[ext=mp4]/b" $1
+}
+
 function ports() {
 	sudo netstat -tulpn | grep LISTEN | grep 'udp\|tcp' | awk '{ printf $4 " " $7 "\n" }' | grep -v - | cut -d ':' -f2 | grep . | column -t
 }
