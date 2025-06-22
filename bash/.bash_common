@@ -16,7 +16,12 @@ export LESSOPEN="| $HIPATH/highlight %s --out-format xterm256 --force"
 [[ -f ~/.config/less/termcap ]] && . ~/.config/less/termcap
 
 function instagram-dl() {
-	youtube-dl  -f "bv*[vcodec^=avc]+ba[ext=m4a]/b[ext=mp4]/b" $1
+	youtube-dl -o "%(id)s.%(ext)s" -f "bv*[vcodec^=avc]+ba[ext=m4a]/b[ext=mp4]/b" $1
+}
+
+function mo_ytdlp_transcript_clean(){
+    yt-dlp --skip-download --write-subs --write-auto-subs --sub-lang en --sub-format ttml --convert-subs srt --output "transcript.%(ext)s" $1;
+    cat ./transcript.en.srt | sed '/^$/d' | grep -v '^[0-9]*$' | grep -v '\-->' | sed 's/<[^>]*>//g' | tr '\n' ' ' > output.txt;
 }
 
 function ports() {
