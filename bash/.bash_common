@@ -219,6 +219,10 @@ else
 	source /opt/homebrew/Cellar/fzf/*/shell/key-bindings.bash
 fi
 
+function venv {
+	python3 -m venv .venv && source .venv/bin/activate
+}
+
 function keys {
 # standard sshd config path
 	SSH_DIR=/etc/ssh/
